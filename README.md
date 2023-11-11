@@ -3,3 +3,14 @@ Este proyecto se centra en la creación de un sistema de gestión de libros elec
 Su principal objetivo es promover la venta de libros digitales, este repositorio contiene el código fuente del sistema.
  
 Realizado por: Nora Calle, José Córdova, Omar Llanos 
+
+## Desarrollo 
+Diagrama de funcionalidad 
+Diagrama de arquitectura de software
+Alcance
+## Tecnologias Utilizadas 
+Base de datos SQL
+Lenguaje de programaciónGo
+GitHub 
+
+
