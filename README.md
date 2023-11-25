@@ -12,5 +12,4 @@ Alcance.
 Base de datos SQL, 
 Lenguaje de programación Go, 
 GitHub.  
-
-##Diagrama de Funcionalidad del Software.
+## Diagrama de Funcionalidad del Software.
