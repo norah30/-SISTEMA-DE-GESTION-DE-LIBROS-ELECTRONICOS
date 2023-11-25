@@ -18,6 +18,5 @@ GitHub.
 ![](https://github.com/norah30/-SISTEMA-DE-GESTION-DE-LIBROS-ELECTRONICOS/blob/0fc2f0c244d579dc03cab7970aef38fca1897001/SIS%20(1).jpg)
 ## Diagrama de Clases 
 ![](https://github.com/norah30/-SISTEMA-DE-GESTION-DE-LIBROS-ELECTRONICOS/blob/45bcd85b046d5bbcfdbceb5c99a1a2840c25c5ac/Proyecto%20GOLAND%202.jpeg)
-## Base de datos SQL
-![](https://github.com/norah30/-SISTEMA-DE-GESTION-DE-LIBROS-ELECTRONICOS/blob/e1d7fffba835e7beab395486702ab78a524a6b60/Gestion_libros.sql)
+
 
