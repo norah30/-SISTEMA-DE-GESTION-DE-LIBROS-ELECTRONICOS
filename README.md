@@ -2,7 +2,7 @@
 Este proyecto se centra en la creación de un sistema de gestión de libros electrónicos utilizando el lenguaje de programación Go. 
 Su principal objetivo es promover la venta de libros digitales, este repositorio contiene el código fuente del sistema.
  
-Realizado por: Nora Calle, José Córdova, Omar Llanos.
+Realizado por: Nora Calle, José Córdova, Omar Llano.
 
 ## Desarrollo 
 Diagrama de funcionalidad, 
