@@ -15,37 +15,55 @@ type Libro struct {
 	EstadoLib   string
 	CedulaPro   string
 }
+// definimos el metodo mostrar libro, recibe una conexion a la base de datos y devuelve un error si hay un problema.
+func (l *Libro) MostrarLibro(b *base.Base, args ...interface{}) {
+	query := "SELECT CodigoLib, Categoria, Titulo, Precio, Descripcion, EstadoLib, CedulaPro FROM libros WHERE CodigoLib = ?;"
+	rows, err := b.DB.Query(query, args...)
+	if err != nil {
+		fmt.Errorf("error al consultar libro: %w", err)
+	}
+	defer rows.Close()
 
-// definimos el metodo mostrar libro
-func (l *Libro) MostrarLibro() {
-	fmt.Println("Código de libro: ", l.CodigoLib)
-	fmt.Println("Categoría: ", l.Categoria)
-	fmt.Println("Título: ", l.Titulo)
-	fmt.Println("Precio: ", l.Precio)
-	fmt.Println("Descripción: ", l.Descripcion)
-	fmt.Println("Estado: ", l.EstadoLib)
-	fmt.Println("Cédula del proveedor: ", l.CedulaPro)
+	for rows.Next() {
+		var libro Libro
+		err := rows.Scan(&libro.CodigoLib, &libro.Categoria, &libro.Titulo, &libro.Precio, &libro.Descripcion, &libro.EstadoLib, &libro.CedulaPro)
+		if err != nil {
+			fmt.Errorf("error al mostrar: %w", err)
+		}
+		fmt.Println(libro)
+	}
+	defer basedatos.CerrarConexion(b.DB)
 }
 
-// definimos el metodo editar libro
-func (l *Libro) EditarLibro(nuevoCodigoLib int, nuevaCategoria string, nuevoTitulo string, nuevoPrecio int, nuevaDescripcion string, nuevoEstado string, nuevaCedulaPro string) {
-	l.CodigoLib = nuevoCodigoLib
-	l.Categoria = nuevaCategoria
-	l.Titulo = nuevoTitulo
-	l.Precio = nuevoPrecio
-	l.Descripcion = nuevaDescripcion
-	l.EstadoLib = nuevoEstado
-	l.CedulaPro = nuevaCedulaPro
+// definimos el metodo editar libro, recibe una conexion a la base de datos y devuelve un error si hay un problema con la actualizacion de la base.
+func (l *Libro) EditarLibro(b *base.Base, nuevo Libro) error {
+	query := "UPDATE libros SET CodigoLib =?, Categoria=?, Titulo=?, Precio=?, Descripcion=?, EstadoLib=?, CedulaPro =? WHERE CodigoLib = ?;"
+	_, err := b.DB.Exec(query, nuevo.CodigoLib, nuevo.Categoria, nuevo.Titulo, nuevo.Precio, nuevo.Descripcion, nuevo.EstadoLib, nuevo.CedulaPro, l.CodigoLib)
+	if err != nil {
+		return fmt.Errorf("error al editar: %w", err)
+	}
+	return nil
 }
 
-// definimos el metodo eliminar libro
-func (l *Libro) EliminarLibro() {
-	l.EstadoLib = "Eliminado"
+// definimos el metodo eliminar libro, recibe una conexion a la base de datos y devuelve un error si hay un problema con la eliminacion del dato.
+func (l *Libro) EliminarLibro(b *base.Base) error {
+	query := `DELETE FROM libros WHERE CodigoLib = ?`
+	_, err := b.DB.Exec(query, l.CodigoLib)
+	if err != nil {
+		fmt.Errorf("error al eliminar libro: %w", err)
+	}
+	return nil
 }
 
-// definimos el metodo insertar libro
-func (l *Libro) InsertarLibro(db *sql.DB) error {
-	query := `INSERT INTO libros (codigo_lib, categoria, titulo, precio, descripcion, estado_lib, cedula_pro) VALUES (?, ?, ?, ?, ?, ?, ?)`
-	_, err := db.Exec(query, l.CodigoLib, l.Categoria, l.Titulo, l.Precio, l.Descripcion, l.EstadoLib, l.CedulaPro)
-	return err
+// definimos el metodo insertar libro, recibe una conexion a la base de datos y devuelve un error si hay un problema al insertar datos en la base.
+func (l *Libro) InsertarLibro(b *base.Base) error {
+	query := `INSERT INTO libros (CodigoLib, Categoria, Titulo, Precio, Descripcion, EstadoLib, CedulaPro) VALUES (?, ?, ?, ?, ?, ?, ?)`
+	_, err := b.DB.Exec(query, l.CodigoLib, l.Categoria, l.Titulo, l.Precio, l.Descripcion, l.EstadoLib, l.CedulaPro)
+
+	if err != nil {
+		return fmt.Errorf("error al insertar libro: %w", err)
+	}
+	return nil
 }
+
+
