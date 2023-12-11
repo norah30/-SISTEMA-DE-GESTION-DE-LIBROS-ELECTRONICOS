@@ -16,39 +16,55 @@ type Proveedor struct {
 	Telefono  int
 	EstadoPro string
 }
+// definimos el metodo mostrar proveedor, recibe una conexion a la base de datos y devuelve un error si hay un problema .
+func (p *Proveedor) MostrarProveedor(b *base.Base, args ...interface{}) {
+	query := "SELECT Nombres, Apellidos, Usuario, Clave, CedulaPro, Correo, Telefono, EstadoPro FROM proveedores  WHERE CedulaPro= ?;"
+	rows, err := b.DB.Query(query, args...)
+	if err != nil {
+		fmt.Errorf("error al consultar proveedor: %w", err)
+	}
+	defer rows.Close()
 
-// definimos el metodo mostrar proveedor
-func (p *Proveedor) MostrarProveedor() {
-	fmt.Println("Nombres: ", p.Nombres)
-	fmt.Println("Apellidos: ", p.Apellidos)
-	fmt.Println("Usuario: ", p.Usuario)
-	fmt.Println("Clave: ", p.Clave)
-	fmt.Println("Cédula: ", p.CedulaPro)
-	fmt.Println("Correo: ", p.Correo)
-	fmt.Println("Teléfono: ", p.Telefono)
-	fmt.Println("Estado: ", p.EstadoPro)
+	for rows.Next() {
+		var proveedor Proveedor
+		err := rows.Scan(&proveedor.Nombres, &proveedor.Apellidos, &proveedor.Usuario, &proveedor.Clave, &proveedor.CedulaPro, &proveedor.Correo, &proveedor.Telefono, &proveedor.EstadoPro)
+		if err != nil {
+			fmt.Errorf("error al mostrar: %w", err)
+		}
+		fmt.Println(proveedor)
+	}
+	defer basedatos.CerrarConexion(b.DB)
 }
 
-// definimos el metodo editar proveedor
-func (p *Proveedor) EditarProveedor(nuevoNombre string, nuevoApellido string, nuevoUsuario string, nuevaClave string, nuevaCedula string, nuevoCorreo string, nuevoTelefono int, nuevoEstado string) {
-	p.Nombres = nuevoNombre
-	p.Apellidos = nuevoApellido
-	p.Usuario = nuevoUsuario
-	p.Clave = nuevaClave
-	p.CedulaPro = nuevaCedula
-	p.Correo = nuevoCorreo
-	p.Telefono = nuevoTelefono
-	p.EstadoPro = nuevoEstado
+// definimos el metodo editar proveedor, recibe una conexion a la base de datos y devuelve un error si hay un problema con la actualizacion de la base.
+func (p *Proveedor) EditarProveedor(b *base.Base, nuevo Proveedor) error {
+	query := "UPDATE proveedores SET Nombres =? , Apellidos=?, Usuario=?, Clave=?, CedulaPro=?, Correo=?, Telefono=?, EstadoPro=? WHERE CedulaPro= ?;"
+	_, err := b.DB.Exec(query, nuevo.Nombres, nuevo.Apellidos, nuevo.Usuario, nuevo.Clave, nuevo.CedulaPro, nuevo.Correo, nuevo.Telefono, nuevo.EstadoPro, p.CedulaPro)
+	if err != nil {
+		return fmt.Errorf("error al editar: %w", err)
+	}
+	return nil
 }
 
-// definimos el metodo eliminar proveedor
-func (p *Proveedor) EliminarProveedor() {
-	p.EstadoPro = "Eliminado"
+// definimos el metodo eliminar proveedor, recibe una conexion a la base de datos y devuelve un error si hay un problema con la eliminacion  del dato.
+func (p *Proveedor) EliminarProveedor(b *base.Base) error {
+	query := `DELETE FROM proveedores WHERE CedulaPro = ?`
+	_, err := b.DB.Exec(query, p.CedulaPro)
+	if err != nil {
+		fmt.Errorf("error al eliminar proveedor: %w", err)
+	}
+	return nil
 }
 
-// definimos el metodo insertar proveedor
-func (p *Proveedor) InsertarProveedor(db *sql.DB) error {
-	query := `INSERT INTO proveedor (nombres, apellidos, usuario, clave, cedula_pro, correo, telefono, estado_pro) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
-	_, err := db.Exec(query, p.Nombres, p.Apellidos, p.Usuario, p.Clave, p.CedulaPro, p.Correo, p.Telefono, p.EstadoPro)
-	return err
+// definimos el metodo insertar proveedor, recibe una conexion a la base de datos y devuelve un error si hay un problema al insertar datos en la base.
+func (p *Proveedor) InsertarProveedor(b *base.Base) error {
+	query := `INSERT INTO proveedores (Nombres, Apellidos, Usuario, Clave, CedulaPro, Correo, Telefono, EstadoPro) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+	_, err := b.DB.Exec(query, p.Nombres, p.Apellidos, p.Usuario, p.Clave, p.CedulaPro, p.Correo, p.Telefono, p.EstadoPro)
+
+	if err != nil {
+		return fmt.Errorf("error al insertar proveedor: %w", err)
+	}
+	return nil
 }
+
+
