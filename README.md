@@ -18,5 +18,10 @@ GitHub.
 ![](https://github.com/norah30/-SISTEMA-DE-GESTION-DE-LIBROS-ELECTRONICOS/blob/0fc2f0c244d579dc03cab7970aef38fca1897001/SIS%20(1).jpg)
 ## Diagrama de Clases 
 ![](https://github.com/norah30/-SISTEMA-DE-GESTION-DE-LIBROS-ELECTRONICOS/blob/45bcd85b046d5bbcfdbceb5c99a1a2840c25c5ac/Proyecto%20GOLAND%202.jpeg)
-
-
+ ## Avance del sistema de gestion de libros electronicos 
+Definimos estructuras y métodos para manejar entidades como clientes, libros y proveedores. 
+Tambien utilizamos una base de datos SQL para almacenar y gestionar los datos.
+El código HTML proporciona las páginas de inicio y 404 para la interfaz de usuario. 
+Los paquetes base y bdsql se encargan de la conexión a la base de datos y las operaciones CRUD.
+El paquete servidor maneja las solicitudes HTTP a diferentes rutas.
+![](https://github.com/norah30/-SISTEMA-DE-GESTION-DE-LIBROS-ELECTRONICOS/blob/6c8716addc9e6aa5ef7da74a103272ea724016b0/Inicio_Sistema.png)
