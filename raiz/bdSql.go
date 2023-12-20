@@ -7,9 +7,9 @@ import (
 
 // DbConn establece una conexión con la base de datos SQL.
 func DbConn() (*sql.DB, error) {
-	Usuario := "sa"
-	contrasenia := "9224"
-	Base := "Gestion_libros"
+	Usuario := os.Getenv("DB_USER")
+	contrasenia := os.Getenv("DB_PASSWORD")
+	Base := os.Getenv("DB_NAME")
 	db, err := sql.Open("sqlserver", "sqlserver://"+Usuario+":"+contrasenia+"@localhost:1433?database="+Base)
 
 	// Si ocurre un error al abrir la conexión a la base de datos, se devuelve nil y el error.
