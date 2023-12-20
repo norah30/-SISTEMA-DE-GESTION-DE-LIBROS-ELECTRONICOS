@@ -25,9 +25,4 @@ func CerrarConexion(db *sql.DB) {
 	if err != nil {
 		fmt.Errorf("error al cerrar conexion: %w", err)
 	}
-	// Si la conexión no está cerrada, se devuelve un error.
-	err = db.Ping()
-	if err == nil {
-		fmt.Errorf("la conexion no esta cerrada: %w", err)
-	}
 }
