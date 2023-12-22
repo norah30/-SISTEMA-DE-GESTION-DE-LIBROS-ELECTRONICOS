@@ -14,11 +14,6 @@ Ofreciéndoles una plataforma que les permita fácilmente publicar y gestionar s
 ## Descripcion del proyecto 
 Este proyecto es un sistema realizado en Go que permite gestionar una base de datos de libros electrónicos. Se puede utilizar para realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en los datos de los libros, clientes y proveedores.
 
-## Desarrollo 
-Diagrama de funcionalidad, 
-Diagrama de arquitectura de software, 
-Alcance.
-
 ## Tecnologias Utilizadas 
 Base de datos MYSQL, 
 Lenguaje de programación Go, 
