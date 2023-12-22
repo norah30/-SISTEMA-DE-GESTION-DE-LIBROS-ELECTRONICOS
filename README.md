@@ -17,10 +17,10 @@ Este proyecto es un sistema realizado en Go que permite gestionar una base de da
 ## Tecnologias Utilizadas 
 Base de datos MYSQL, 
 Lenguaje de programación Go, 
-GitHub.  
-Plantillas html
-Gorilla/mux
-Go-sql-driver/mysql
+GitHub,  
+Plantillas html,
+Gorilla/mux,
+Go-sql-driver/mysql.
 
 ## Diagrama de Funcionalidad del Software.
 ![](https://github.com/norah30/-SISTEMA-DE-GESTION-DE-LIBROS-ELECTRONICOS/blob/fa5a073a844dc210e7e111113f791f4699324004/sistemas%20de%20venta%20de%20libros%20digitales.jpeg)
