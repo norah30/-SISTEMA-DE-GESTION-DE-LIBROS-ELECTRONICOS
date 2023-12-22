@@ -26,6 +26,8 @@ Los paquetes base y bdsql se encargan de la conexión a la base de datos y las o
 El paquete servidor maneja las solicitudes HTTP a diferentes rutas.
 ![](https://github.com/norah30/-SISTEMA-DE-GESTION-DE-LIBROS-ELECTRONICOS/blob/6c8716addc9e6aa5ef7da74a103272ea724016b0/Inicio_Sistema.png)
 ## FindBook
+
 Pensamos en ofrecer grandes oportunidades para nuestros vendedores (autores).
 Ofreciéndoles una plataforma que les permita fácilmente publicar y gestionar sus libros.
+
 ![](https://github.com/norah30/-SISTEMA-DE-GESTION-DE-LIBROS-ELECTRONICOS/blob/9c47e1ad6529517457d6b450e9933859caf3acf4/imagenes/WhatsApp%20Image%202023-12-21%20at%2023.20.38.jpeg)
