@@ -25,3 +25,6 @@ El código HTML proporciona las páginas de inicio y 404 para la interfaz de usu
 Los paquetes base y bdsql se encargan de la conexión a la base de datos y las operaciones CRUD.
 El paquete servidor maneja las solicitudes HTTP a diferentes rutas.
 ![](https://github.com/norah30/-SISTEMA-DE-GESTION-DE-LIBROS-ELECTRONICOS/blob/6c8716addc9e6aa5ef7da74a103272ea724016b0/Inicio_Sistema.png)
+
+##FINDBOOK
+
